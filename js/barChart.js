@@ -8,6 +8,10 @@ var x = d3.scale.ordinal()
 var y = d3.scale.linear()
 		.range([height, 0]);
 
+var format = d3.time.format("%Y-%m-%d");
+var year = d3.time.format("%Y");
+var month = d3.time.format("%B");
+
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
@@ -16,7 +20,7 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
 
-var tip = d3.select("barChart").append("div")
+var div = d3.select("#barChart").append("div")
 	.attr("class", "tooltip")
 	.style("opacity", 0);
 
@@ -49,7 +53,7 @@ d3.csv("./data/gdp-data.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Value");
+      .text("Value in Billion");
 
   svg.selectAll(".bar")
       .data(data)
@@ -60,10 +64,25 @@ d3.csv("./data/gdp-data.csv", function(error, data) {
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
       .on("mouseover", function(d) {
-      	console.log("mouse over");
+      	d3.select(this)
+      		.transition()
+      		.duration(500)
+      		.style("cursor", "pointer")
+      		div
+      			.transition()
+      			.duration(500)
+      			.style("opacity", 9)
+      		div
+      			.html("GDP: $" + d.value + "<br/>" + "Quarter: " + month(new Date(d.date)) + " " + year(new Date(d.date)))
+      			.style("left", (d3.event.pageX - 100) + "px")
+      			.style("top", (d3.event.pageY + 600) + "px")
+      			console.log(d3.event.pageY);
+
       })
-      .on("mouseout", function(d) {
-      	console.log("mouse out");
-      })
+	  .on("mouseout", function(d) {
+	  		div.transition()
+	  			.duration(500)
+	  			.style("opacity", 0);
+	  })
 
 });

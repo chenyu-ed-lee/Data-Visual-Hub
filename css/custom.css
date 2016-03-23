@@ -22,3 +22,14 @@ text {
 	font-family: "PT Sans", sans-serif;
 	font-size: 11px;
 }
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 200px;
+    height: auto;			
+    padding: 8px;				
+    background: #ffc0cb;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
