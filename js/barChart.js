@@ -76,7 +76,6 @@ d3.csv("./data/gdp-data.csv", function(error, data) {
       			.html("GDP: $" + d.value + "<br/>" + month(new Date(d.date)) + " " + year(new Date(d.date)))
       			.style("left", (d3.event.pageX - 100) + "px")
       			.style("top", (d3.event.pageY + 600) + "px")
-      			console.log(d3.event.pageY);
 
       })
 	  .on("mouseout", function(d) {
