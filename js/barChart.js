@@ -73,7 +73,7 @@ d3.csv("./data/gdp-data.csv", function(error, data) {
       			.duration(500)
       			.style("opacity", 9)
       		div
-      			.html("GDP: $" + d.value + "<br/>" + "Quarter: " + month(new Date(d.date)) + " " + year(new Date(d.date)))
+      			.html("GDP: $" + d.value + "<br/>" + month(new Date(d.date)) + " " + year(new Date(d.date)))
       			.style("left", (d3.event.pageX - 100) + "px")
       			.style("top", (d3.event.pageY + 600) + "px")
       			console.log(d3.event.pageY);
