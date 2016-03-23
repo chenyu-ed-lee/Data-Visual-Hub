@@ -1,0 +1,24 @@
+svg {
+	display: block;
+	margin: 0 auto;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.bar {
+	fill: #5b927d;
+}
+.bar:hover {
+	fill: #3f6657;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+text {
+	font-family: "PT Sans", sans-serif;
+	font-size: 11px;
+}
