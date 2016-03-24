@@ -40,6 +40,7 @@ d3.csv("./data/gdp-data.csv", function(error, data) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
     .selectAll("text")
+      .attr("class", "xAxisBarChart")
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("dy", "-.55em")
@@ -53,7 +54,7 @@ d3.csv("./data/gdp-data.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Value in Billion");
+      .text("Value in Billion($)");
 
   svg.selectAll(".bar")
       .data(data)
