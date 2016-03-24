@@ -1,7 +1,7 @@
 var margin = {top: 20, right: 20, bottom: 100, left: 70},
-    width = 1000 - margin.left - margin.right,
+    width = 960 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
-
+    
 var x = d3.scale.ordinal()
 		.rangeRoundBands([0, width], .05);
 
@@ -25,8 +25,10 @@ var div = d3.select("#barChart").append("div")
 	.style("opacity", 0);
 
 var svg = d3.select("#barChart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    // .attr("width", width + margin.left + margin.right)
+    // .attr("height", height + margin.top + margin.bottom)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 960 600")
 	.append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
