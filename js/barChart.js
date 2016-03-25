@@ -1,4 +1,4 @@
-var margin = {top: 20, right: 20, bottom: 100, left: 70},
+var margin = {top: 20, right: 50, bottom: 100, left: 70},
     width = 960 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
     
