@@ -27,7 +27,7 @@ var svg2 = d3.select("#scatterPlot").append("svg")
 d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json", function(error, data) {
 	if (error) console.log("Error!");
 	console.log(data);
-	x2.domain([d3.max(data, function(d) { return d.Seconds; }), d3.min(data, function(d) { return d.Seconds; })]);
+	x2.domain([(2400/60), (d3.min(data, function(d) { return d.Seconds; })/60)]);
 	y2.domain([36, d3.min(data, function(d) { return d.Place; })]);
 
 	svg2.append("g")
@@ -35,15 +35,18 @@ d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis2)
 	.append("text")
-		// .style("text-anchor", "middle")
-		// .text("Mintues behind Fastest Time");
+		.attr("x", 300)
+		.attr("y", 50)
+		.style("text-anchor", "middle")
+		.text("Mintues");
 
 	svg2.append("g")
 		.attr("class", "y2 axis")
 		.call(yAxis2)
 	.append("text")
-		.attr("transform", "rotate(-90)")
-		.attr("y", 6)
+		// .attr("transform", "rotate(-90)")
+		// .attr("y", 1)
+		.attr("x", 60)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.text("Ranking");
@@ -55,7 +58,7 @@ d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
 		.attr("class", "dot")
 		.attr("r", 5)
 		.attr("cx", function(d) {
-			return x2(d.Seconds);
+			return x2(d.Seconds/60);
 		})
 		.attr("cy", function(d) {
 			return y2(d.Place);
