@@ -27,14 +27,8 @@ var svg2 = d3.select("#scatterPlot").append("svg")
 d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json", function(error, data) {
 	if (error) console.log("Error!");
 	console.log(data);
-	// x2.domain([60 * 35, 0])
-	x2.domain(d3.extent(data, function(d) {
-		return d.Seconds;
-	}))
-	// y2.domain([36, 1]);
-	y2.domain(d3.extent(data, function(d) {
-		return d.Place;
-	}))
+	x2.domain([d3.max(data, function(d) { return d.Seconds; }), d3.min(data, function(d) { return d.Seconds; })]);
+	y2.domain([36, d3.min(data, function(d) { return d.Place; })]);
 
 	svg2.append("g")
 		.attr("class", "x2 axis")
