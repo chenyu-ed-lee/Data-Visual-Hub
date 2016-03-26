@@ -1,6 +1,6 @@
-var margin2 = {top: 20, right: 70, bottom: 100, left: 70},
-    width2 = 800 - margin2.left - margin2.right,
-    height2 = 500 - margin2.top - margin2.bottom;
+var margin2 = {top: 20, right: 50, bottom: 100, left: 70},
+    width2 = 650 - margin2.left - margin2.right,
+    height2 = 400 - margin2.top - margin2.bottom;
 
 var x2 = d3.scale.linear()
 		.range([0, width2]);
@@ -18,7 +18,7 @@ var yAxis2 = d3.svg.axis()
 
 var svg2 = d3.select("#scatterPlot").append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 800 500")
+    .attr("viewBox", "0 0 650 400")
 	.append("g")
       .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
@@ -54,11 +54,12 @@ d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
 		.enter()
 		.append("circle")
 		.attr("class", "dot")
-		.attr("r", 5)
+		.attr("r", 3)
 		.attr("cx", function(d) {
 			return x2(d.Seconds/60);
 		})
 		.attr("cy", function(d) {
 			return y2(d.Place);
 		})
+
 })
