@@ -1,5 +1,5 @@
 # data-visual-hub
-A hub with four different data visualizations.
+A hub with four different data visualizations. There is no back-end. Just pure front-end. Data came from different sources. 
 
 Node is already set up with this.
 
