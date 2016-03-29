@@ -36,10 +36,10 @@ d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
 		.attr("transform", "translate(0," + height2 + ")")
 		.call(xAxis2)
 	.append("text")
-		.attr("x", 250)
+		.attr("x", 270)
 		.attr("y", 50)
 		.style("text-anchor", "middle")
-		.text("Mintues used for the race");
+		.text("Mintues Used For The Race");
 
 	svg2.append("g")
 		.attr("class", "y2 axis")
