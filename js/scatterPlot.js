@@ -16,6 +16,10 @@ var yAxis2 = d3.svg.axis()
     .scale(y2)
     .orient("left");
 
+var tooltip2 = d3.select("#scatterPlot").append("div")
+		.attr("class", "tooltip2")
+		.style("opacity", 0);
+
 var svg2 = d3.select("#scatterPlot").append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 700 400")
@@ -53,16 +57,15 @@ d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
 		.enter()
 		.append("text")
 		.text(function(d) {
-			console.log(d.Name)
 			return d.Name;
 		})
 		.attr("x", function(d) {
-		return x2(d.Seconds/60);
+		return x2(d.Seconds/60) + 5;
 		})
 		.attr("y", function(d) {
-		return y2(d.Place);
+		return y2(d.Place) + 2;
 		})
-		.attr("transform", "translate(15,+4)")
+		// .attr("transform", "translate(15,+4)")	
 		.attr("class", "dotLabel");
 
 	svg2.selectAll(".dot")
@@ -70,11 +73,73 @@ d3.json("https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
 		.enter()
 		.append("circle")
 		.attr("class", "dot")
-		.attr("r", 2.5)
+		.attr("r", 3.5)
 		.attr("cx", function(d) {
 			return x2(d.Seconds/60);
 		})
 		.attr("cy", function(d) {
 			return y2(d.Place);
+		})
+		.attr("fill", function(d) {
+			if(d.Doping == "") {
+				return "#a5a096";
+			}
+			return "#ffc33c";
+		})
+		.on("mouseover", function(d) {
+			tooltip2.transition()
+				.duration(200)
+				.style("opacity", .9);
+
+			tooltip2.html(createToolTip(d))
+			.style("left", (200) + "px")
+			.style("top", (925) + "px");
+		})
+		.on("mouseout", function(d) {
+			tooltip2.transition()
+				.duration(500)
+				.style("opacity", 0);
 		});
+
+	svg2.append("circle")
+		.attr("cx", 450)
+		.attr("cy", 150)
+		.attr("r", 5)
+		.attr("fill", "#a5a096");
+
+	svg2.append("text")
+		.attr("x", 457)
+		.attr("y", 153)
+		.attr("text-anchor", "left")
+		.attr("class", "legend")
+		.text("No doping allegations");
+
+	svg2.append("circle")
+		.attr("cx", 450)
+		.attr("cy", 170)
+		.attr("r", 5)
+		.attr("fill", "#ffc33c");
+
+	svg2.append("text")
+		.attr("x", 457)
+		.attr("y", 173)
+		.attr("text-anchor", "left")
+		.attr("class", "legend")
+		.text("Riders with doping allegations");
+
+	function friendlySeconds(seconds) {
+		return parseInt(seconds / 60) + ":" + seconds % 60;
+	}
+
+	function createToolTip(d) {
+		var tooltipHTML = "<p>" + d.Name + ": " + d.Nationality + "</p>";
+		tooltipHTML += "<p>Year: " + d.Year + ", Time: " + friendlySeconds(d.Seconds) + "</p>";
+		if(d.Doping == "") {
+			tooltipHTML += "<p>No Doping Allegation</p>";
+		} else {
+			tooltipHTML += "<p>" + d.Doping + "</p>";
+		}
+		return tooltipHTML;
+	}
 })
+
