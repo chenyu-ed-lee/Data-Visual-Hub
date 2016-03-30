@@ -31,9 +31,9 @@ div.tooltip {
     width: 200px;
     height: auto;			
     padding: 8px;				
-    background: #ffc0cb;	
-    border: 0px;		
-    border-radius: 8px;			
+    background: rgba(0, 0, 0, 0.8);	
+    border-radius: 8px;
+    color: #fff9ed;		
     pointer-events: none;			
 }
 .dotLabel {
@@ -52,8 +52,8 @@ div.tooltip {
 .tooltip2 {
   position: absolute;
   pointer-events: none;
-  width: 250px;
-  padding: 12px;
+  width: 265px;
+  padding: 10px;
   font-size: 15px;
   color: #fff9ed;
   background: rgba(0, 0, 0, 0.8);
